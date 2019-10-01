@@ -2,24 +2,21 @@ import React from "react";
 import { Dimensions, View } from "react-native";
 
 import { LineChart } from 'react-native-chart-kit'
+import { defaultColor } from '../../../utils/functions'
 
-const Chart = props => {
+
+const Chart = (props: any) => {
   const screenWidth = Dimensions.get('window').width
-  const defaultColor = (color, defaultColor) => {
-    if (color) return color
-    else return defaultColor;
-  }
   const chartConfig = {
     backgroundColor: defaultColor(props.backgroundColor, '#132'),
     backgroundGradientFrom: defaultColor(props.backgroundGradientFrom, '#132'),
     backgroundGradientTo: defaultColor(props.backgroundGradientTo, '#687'),
-    decimalPlaces: 2, 
+    decimalPlaces: 2,
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
       borderRadius: 16,
     }
   }
-
   return (
     <View>
       <LineChart

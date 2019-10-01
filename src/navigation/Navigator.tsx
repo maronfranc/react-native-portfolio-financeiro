@@ -1,10 +1,6 @@
-import {
-  createAppContainer,
-} from 'react-navigation';
-import {
-  createBottomTabNavigator,
-} from 'react-navigation-tabs';
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import TradingScreen from '../screens/Trading'

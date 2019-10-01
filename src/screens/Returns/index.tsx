@@ -1,7 +1,7 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 
-import { Button, Card, Title } from '../../components/UI';
+import { Card, Title } from '../../components/UI';
 
 
 export default function ReturnsScreen() {

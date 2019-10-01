@@ -17,5 +17,3 @@ export function weight(valueInvested: number, portfolio: number): number {
   return valueInvested / portfolio;
 }
 
-// TODO: Retorno usando peso e simpleReturn
- 
