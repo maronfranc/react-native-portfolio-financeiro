@@ -7,7 +7,6 @@ import {
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 import TradingScreen from '../screens/Trading'
 import ReturnsScreen from '../screens/Returns'
 import PortfolioScreen from '../screens/Portfolio'
@@ -33,9 +32,9 @@ const MainNavigator = createBottomTabNavigator({ PortfolioScreen, TradingScreen,
     }),
     tabBarOptions: {
       activeBackgroundColor: '#a68d02',
-      activeTintColor: '#fff',
+      activeTintColor: '#FFF',
       inactiveBackgroundColor: '#132',
-      inactiveTintColor: 'gold',
+      inactiveTintColor: '#FFF',
     },
   });
 

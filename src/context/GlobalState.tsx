@@ -2,6 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 
 import PortfolioContext, { AppContextInterface, PortfolioInterface } from './portfolioContext';
 import { portfolioReducer, BUY, SELL } from './reducers';
+import { sellAction, buyAction } from './actions';
 
 
 const GlobalState = (props: any) => {
@@ -9,25 +10,22 @@ const GlobalState = (props: any) => {
     { btcusd: 'BTC_USDT' },
     { ethusd: 'ETH_USDT' },
   ];
-  const initialState: Array<PortfolioInterface> = [
-    { amount: 10000, currency: 'BRL' },
-    { amount: 0, currency: 'USD' },
-    { amount: 0, currency: 'BTC' },
+  const initialState: Array<Object> = [
+    { totalBalance: 1300, name: 'BRL', },
+    { totalBalance: 100, name: 'USD', },
+    { totalBalance: 5000, name: 'BTC', },
   ];
   const [portfolioState, dispatch] = useReducer(
     portfolioReducer, { portfolio: initialState }
   );
 
-  const buy = (amount: number) => {
-    dispatch({ type: BUY, amount: amount });
+  const buy = (amount: number, name: string) => {
+    dispatch(buyAction(amount, name));
   };
-  const sell = (amount: number) => {
-    dispatch({ type: SELL, amount: amount });
+  const sell = (amount: number, name: string) => {
+    dispatch(sellAction(amount, name));
   };
 
-  // useEffect(() => {
-  //   console.warn(portfolioState);
-  // }, [])
   const appContext: AppContextInterface = {
     currencyPairs: currencyPairs,
     portfolio: portfolioState,

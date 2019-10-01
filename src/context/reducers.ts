@@ -1,33 +1,38 @@
 import { PortfolioInterface } from "./portfolioContext";
 
-export const BUY = 'BUY';
-export const SELL = 'SELL';
-
-// const buy = (amount: number) => {
-//   setBalance(balance - amount)
-//   setOrder(orders + amount)
-// }
-// const sell = (amount: number) => {
-//   if (orders <= 0) return;
-//   setOrder(orders - amount)
-//   setBalance(balance + amount)
-// }
+import { BUY, SELL } from './actions'
 
 interface ActionInterface {
   type: string;
-  amount: number
+  amount: number;
+  name: string;
 }
 
 export function portfolioReducer(state: Array<PortfolioInterface>, action: ActionInterface) {
   switch (action.type) {
-    case BUY:
-      return {
-        portfolio: state.portfolio + action.amount
-      };
-    case SELL:
-      return console.warn('ACTION SELL');
+    // Adicionada as { } para ter as variáveis num escopo fechado
+    case BUY: {
+      // Acessa porfólio busca action.name e soma o valor
+      const portfolio = state.portfolio.map((item) => {
+        if (item.name === action.name) {
+          return { ...item, totalBalance: (item.totalBalance + action.amount) }
+        }
+        return item;
+      });
+      return { ...state, portfolio };
+    }
+    // Adicionada as { } para ter as variáveis num escopo fechado
+    case SELL: {
+      // Acessa porfolio busca action.name e subtrai o valor
+      const portfolio = state.portfolio.map((item) => {
+        if (item.name === action.name) {
+          return { ...item, totalBalance: (item.totalBalance - action.amount) }
+        }
+        return item;
+      });
+      return { ...state, portfolio };
+    }
     default:
-      throw new Error('ERROR: portfolioReducer');
+      throw new Error('Erro no Reducer');
   }
 }
-

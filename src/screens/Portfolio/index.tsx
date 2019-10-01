@@ -1,32 +1,31 @@
 import React, { useState, useReducer, useContext, useEffect } from 'react';
-
-import { Card, Title, Container, Button, Input } from '../../components/UI'
-import PortfolioContext from '../../context/portfolioContext';
 import { FlatList } from 'react-native';
+
+import PortfolioContext from '../../context/portfolioContext';
+import { Card, Title, Container, Button, Input, Text } from '../../components/UI'
+import Pie from '../../components/Chart/PieChart';
 
 
 export default function PortfolioScreen() {
   const context = useContext(PortfolioContext)
   const { portfolio } = context.portfolio;
   
-  const _renderItem = (item) => {
-    <Title>{item[0].currency}: {item[0].amount}</Title>
-  }
-  // useEffect(() => {
-  //   console.log(context.portfolio.portfolio[0].amount);
-  // }, [])
-  // const test: JSX.Element = context.portfolio.portfolio[0].amount;
+  // FIXME: 
+  // const test = portfolio.map(val => val)
+
   return (
     <Container>
-      <Card>
-        <Title>Portfolio: </Title>
-        <FlatList 
-          data={}
-          renderItem={}
-          keyExtractor={}
-        />
-        <Title>Em ordens: </Title>
+      <Card style={{margin: 10}}>
+        <Title>Portfólio em reais.</Title>
+        <Pie />
       </Card>
+      <Button onPress={() => { context.buy(500, 'BRL')}} backgroundColor={'green'}>Abrir Ordem de Compra</Button>
+      <Button onPress={() => { context.sell(500, 'BRL')}} backgroundColor={'maroon'}>Fechar Ordem de Compra</Button>
+
     </Container>
   );
+}
+
+PortfolioScreen.navigationOptions = {
+  title: 'Portfólio'
 }
