@@ -6,6 +6,7 @@ import { defaultColor } from '../../../utils/functions'
 
 
 const Chart = (props: any) => {
+  let chartHeight = 220
   const screenWidth = Dimensions.get('window').width
   const chartConfig = {
     backgroundColor: defaultColor(props.backgroundColor, '#132'),
@@ -22,7 +23,7 @@ const Chart = (props: any) => {
       <LineChart
         data={props.data}
         width={screenWidth}
-        height={220}
+        height={chartHeight}
         yAxisLabel={'R$'}
         chartConfig={chartConfig}
         bezier

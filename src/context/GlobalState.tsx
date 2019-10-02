@@ -8,9 +8,9 @@ import { AppContextInterface, PortfolioInterface } from '../interfaces';
 
 const GlobalState = (props: any) => {
   const initialState: PortfolioInterface = [
-    { totalBalance: 1000, name: 'BRL', },
-    { totalBalance: 100, name: 'USD', },
-    { totalBalance: 5000, name: 'BTC', },
+    { totalBalance: 1000.00, name: 'BRL', },
+    { totalBalance: 100.00, name: 'USD', },
+    { totalBalance: 1.00001000, name: 'BTC', },
   ];
   const [portfolioState, dispatch] = useReducer(
     portfolioReducer, { portfolio: initialState }

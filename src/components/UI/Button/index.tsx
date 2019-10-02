@@ -12,10 +12,10 @@ import {
 const Button = (props: any) => {
   const content = (
     <View
+      {...props}
       style={[
         styles.button,
         props.disabled ? styles.disabled : null,
-        {backgroundColor: props.backgroundColor}
       ]}
     >
       <Text style={[styles.textStyles, props.disabled ? styles.disabledText : null]}>

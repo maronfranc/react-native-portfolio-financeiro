@@ -12,7 +12,6 @@ interface ChartLabels extends Array<string> { }
 export default function TradingScreen() {
   const context = useContext(portfolioContext)
   const { portfolio } = context.portfolio;
-  // console.log('portfolio', portfolio)
   let currency = getCurrencyByName(portfolio, 'BRL')
   let initialBalance = currency.totalBalance
   const [balance, setBalance] = useState(initialBalance)
@@ -20,7 +19,6 @@ export default function TradingScreen() {
   const [orders, setOrder] = useState(0)
   const [ordersHistory, setOrdersHistory] = useState([0])
   const [timeLabels, setTimelabels] = useState([getHoursMinutesSeconds()])
-
 
   const buy = (amount: number, name: string) => {
     if (currency.totalBalance < amount) return;
