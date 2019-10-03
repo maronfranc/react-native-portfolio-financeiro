@@ -1,18 +1,23 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useContext } from 'react';
+import { ScrollView } from 'react-native';
 
-import { Card, Title } from '../../components/UI';
+import { Title, Container } from '../../components/UI';
+import Pie from '../../components/Chart/Pie';
+import portfolioContext from '../../context/portfolioContext';
 
 
 export default function ReturnsScreen() {
+  const context = useContext(portfolioContext)
+  const { portfolio } = context.portfolio;
   return (
     <>
-      <Card>
-        <Title>Retorno simples</Title>
-      </Card>
-      <Card>
-        <Title>Sharpe Ratio</Title>
-      </Card>
+      <Container>
+        <ScrollView style={{ width: '100%' }}>
+          <Title>Portfólio em reais.</Title>
+          <Pie data={portfolio} />
+          <Title>Retorno simples</Title>
+        </ScrollView>
+      </Container>
     </>
   )
 }

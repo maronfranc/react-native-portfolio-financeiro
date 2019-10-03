@@ -6,14 +6,25 @@ import { PortfolioCurrencyInterface } from "../../../interfaces";
 
 const Pie = (props: any) => {
   const screenWidth = Dimensions.get('window').width;
+  const screenHeight = Dimensions.get('window').height;
   let chartHeight = 220
   // TODO: Adicionar a cores dinamicamente
   const pieConfig = [
-    { color: '#F2A104', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { color: '#192E5B', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: 'maroon', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#F2A104', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { color: '#1D65A6', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { color: '#00743F', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { color: '#A37C27', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#282726', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#583E2E', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#132226', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#8E5C1D', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#563838', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#42EADDFF', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#000000FF', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#F95700FF', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { color: '#D6ED17FF', legendFontColor: '#7F7F7F', legendFontSize: 15 },
   ]
   const chartConfig = {
     decimalPlaces: 2,

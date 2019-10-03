@@ -10,7 +10,7 @@ const Container = (props: any) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#132',
     // justifyContent: 'center',
     alignItems: 'center',
   },

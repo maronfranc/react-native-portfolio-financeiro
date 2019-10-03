@@ -10,7 +10,19 @@ const GlobalState = (props: any) => {
   const initialState: PortfolioInterface = [
     { totalBalance: 1000.00, name: 'BRL', },
     { totalBalance: 100.00, name: 'USD', },
-    { totalBalance: 1.00001000, name: 'BTC', },
+    { totalBalance: 100.00, name: 'EUR', },
+    { totalBalance: 10.00, name: 'XAU', },
+    { totalBalance: 1000.00, name: 'GBP', },
+    { totalBalance: 1000.00, name: 'CAD', },
+    { totalBalance: 100.00, name: 'AAPL', },
+    { totalBalance: 1000.00, name: 'GLD', },
+    { totalBalance: 1000.00, name: 'BTC', },
+    { totalBalance: 500.00, name: 'ETH', },
+    { totalBalance: 100.00, name: 'FTC', },
+    { totalBalance: 5000.00, name: 'DGB', },
+    { totalBalance: 1000.00, name: 'ZRX', },
+    { totalBalance: 1000.00, name: 'LSK', },
+    { totalBalance: 1000.00, name: 'OMG', },
   ];
   const [portfolioState, dispatch] = useReducer(
     portfolioReducer, { portfolio: initialState }

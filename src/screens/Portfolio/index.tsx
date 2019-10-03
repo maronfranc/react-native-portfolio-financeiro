@@ -1,21 +1,18 @@
 import React, { useContext } from 'react';
 
 import PortfolioContext from '../../context/portfolioContext';
-import { Card, Title, Container, Button, Input, Text } from '../../components/UI'
-import Pie from '../../components/Chart/Pie';
+import { Title, Container } from '../../components/UI'
+import ListOfAssets from '../../components/ListOfAssets';
 
 
-export default function PortfolioScreen() {
+export default function PortfolioScreen({ navigation }) {
   const context = useContext(PortfolioContext)
   const { portfolio } = context.portfolio;
-
   return (
     <Container>
 
-      <Card style={{ margin: 10 }}>
-        <Title>Portfólio em reais.</Title>
-        <Pie data={portfolio} />
-      </Card>
+      <Title style={{ backgroundColor: '#132', width: '100%' }}>Portfólio em reais</Title>
+      <ListOfAssets data={portfolio} />
 
     </Container>
   );

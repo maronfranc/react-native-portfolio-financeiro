@@ -1,19 +1,22 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import portfolioContext from '../../context/portfolioContext';
-import { Card, Button, Container } from '../../components/UI';
+import { Card, Button, Container, Title, Text } from '../../components/UI';
 import Chart from '../../components/Chart/Line';
 import { getHoursMinutesSeconds, brl, getCurrencyByName } from '../../utils/functions';
 
 interface ChartData extends Array<number> { }
 interface ChartLabels extends Array<string> { }
 
-export default function TradingScreen() {
+export default function TradingScreen({ navigation }) {
   const context = useContext(portfolioContext)
   const { portfolio } = context.portfolio;
-  let currency = getCurrencyByName(portfolio, 'BRL')
-  let initialBalance = currency.totalBalance
+  // Recebe o nome da moeda pelos parâmetros do navigation
+  const paramName = navigation.getParam('name', 'BRL')
+  const currency = getCurrencyByName(portfolio, paramName)
+  const initialBalance = currency.totalBalance
+
   const [balance, setBalance] = useState(initialBalance)
   const [balanceHistory, setBalanceHistory] = useState([initialBalance])
   const [orders, setOrder] = useState(0)
@@ -79,15 +82,15 @@ export default function TradingScreen() {
       <ScrollView>
 
         <Card>
-          <Text>Conta: {brl(balance)}</Text>
-          <Text>Em Ordens: {brl(orders)}</Text>
+          <Text>Quantida de {currency.name}: {currency.totalBalance}</Text>
+          <Text>Valor em Ordens: {brl(orders)}</Text>
         </Card>
         <Chart data={balanceData} />
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-          <Button onPress={() => { buy(250, currency.name) }} backgroundColor='green'>
+          <Button onPress={() => { buy(100, currency.name) }} backgroundColor='green'>
             Abrir Ordem de Compra
             </Button>
-          <Button onPress={() => { sell(250, currency.name) }} backgroundColor='maroon'>
+          <Button onPress={() => { sell(100, currency.name) }} backgroundColor='maroon'>
             Fechar Ordem de Compra
             </Button>
         </View>

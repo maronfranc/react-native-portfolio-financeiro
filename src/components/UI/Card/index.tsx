@@ -10,11 +10,9 @@ const Card = (props: any) => (
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    // alignItems: 'center',
-    // justifyContent: 'center',
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#ddd',
+    borderColor: '#777',
     borderBottomWidth: 0,
     shadowColor: '#000',
     shadowOffset: {
@@ -24,7 +22,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 2,
-    backgroundColor: '#fff'
+    backgroundColor: '#354'
   },
 });
 

@@ -1,6 +1,5 @@
 import { PortfolioInterface } from "../../interfaces";
 
-
 /*
  *  Cria a data do momento que for chamado e
  *  retorna valor formatado para '00:00:00'

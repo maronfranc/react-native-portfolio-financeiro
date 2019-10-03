@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 		marginVertical: 10,
 		marginHorizontal: 5,
-		color: '#000'
+		color: '#FFF'
 	}
 });
 
