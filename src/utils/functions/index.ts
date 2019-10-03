@@ -1,5 +1,11 @@
 import { PortfolioInterface } from "../../interfaces";
 
+// Recebe (array e 'nome') e retorna um {objeto} que tem esse 'nome' dentro do array
+// TODO: Se necessário mudar para função genérica no futuro getObjectByName<T>()
+export const getCurrencyByName = (portfolio: PortfolioInterface, currencyName: string) => {
+  return portfolio.filter(item => item.name === currencyName)[0]
+}
+
 /*
  *  Cria a data do momento que for chamado e
  *  retorna valor formatado para '00:00:00'
@@ -17,18 +23,24 @@ const addZero = (n: any) => {
 }
 
 // Recebe um número, deixa com duas casas decimais e muda o ponto para vírgula
-const replaceDotWithComma = (number: number): string => {
-  return number.toFixed(2).replace(".", ",");
+export const replaceDotWithComma = (number: number, decimals = 2): string => {
+  return number.toFixed(decimals).replace(".", ",");
 }
+
+// Recebe string, muda vírgula para ponto e retorna float
+export const replaceCommaDot = (number: string): number => {
+  return +number.replace(",", ".");
+}
+
+// Recebe número e retorna formatado '0,000 %'
+export const percent = (n: number | string, decimals = 3): string => {
+  let percentage = (+n * 100).toFixed(decimals)
+  return n ? `${percentage}%` : '';
+}
+
 // Usa replaceDotWithComma para formatar número 0.00 pra 'R$0,00'
 export const brl = (formatedNumber: number): string => {
   return `R$${replaceDotWithComma(formatedNumber)}`
-}
-
-// Recebe (array e 'nome') e retorna um {objeto} que tem esse 'nome' dentro do array
-// TODO: Se necessário mudar para função genérica no futuro getObjectByName<T>()
-export const getCurrencyByName = (portfolio: PortfolioInterface, currencyName: string) => {
-  return portfolio.filter(item => item.name === currencyName)[0]
 }
 
 /*

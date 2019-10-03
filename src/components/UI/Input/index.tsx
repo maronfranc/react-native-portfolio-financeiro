@@ -4,18 +4,17 @@ import { TextInput, StyleSheet } from "react-native";
 const Input = (props: any) => (
   <TextInput
     {...props}
-    style={[styles.chatInput, props.style]}
+    style={[styles.input, props.style]}
     autoCapitalize="sentences"
     underlineColorAndroid="rgba(0,0,0,0)" />
 );
 
 const styles = StyleSheet.create({
-  chatInput: {
-    width: "80%",
+  input: {
+    // width: "100%",
     borderWidth: 1,
-    borderRadius: 20,
-    borderColor: '#ddd',
-    borderBottomWidth: 0,
+    borderRadius: 5,
+    borderColor: 'gold',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -24,11 +23,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 5,
     elevation: 1,
-    marginLeft: 10,
-    paddingLeft: 25,
+    paddingLeft: 15,
     fontSize: 20,
-    backgroundColor: '#fff',
-    height: 50
+    height: 50,
+    color: '#FFF',
+    backgroundColor: 'rgba(255,255,255,0.25)',
   },
 });
 

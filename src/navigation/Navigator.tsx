@@ -16,7 +16,7 @@ import StackHeader from './StackHeader';
  *  }
  */
 const MainTab = createMaterialTopTabNavigator(
-  { PortfolioScreen, TradingScreen, ReturnsScreen },
+  { PortfolioScreen, ReturnsScreen, TradingScreen },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       // https://reactnavigation.org/docs/en/tab-based-navigation.html

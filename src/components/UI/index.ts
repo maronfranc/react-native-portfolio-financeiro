@@ -4,6 +4,7 @@ import Input from './Input';
 import Container from './Container';
 import Button from './Button';
 import Text from './Text';
+import ScrollContainer from './ScrollContainer';
 
 export { 
   Card, 
@@ -11,5 +12,6 @@ export {
   Input, 
   Container,
   Button,
-  Text
+  Text,
+  ScrollContainer
 };

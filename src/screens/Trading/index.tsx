@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import portfolioContext from '../../context/portfolioContext';
-import { Card, Button, Container, Title, Text } from '../../components/UI';
+import { Card, Button, Text, ScrollContainer } from '../../components/UI';
 import Chart from '../../components/Chart/Line';
 import { getHoursMinutesSeconds, brl, getCurrencyByName } from '../../utils/functions';
 
@@ -78,31 +78,29 @@ export default function TradingScreen({ navigation }) {
   }
 
   return (
-    <Container>
-      <ScrollView>
+    <ScrollContainer>
 
-        <Card>
-          <Text>Quantida de {currency.name}: {currency.totalBalance}</Text>
-          <Text>Valor em Ordens: {brl(orders)}</Text>
-        </Card>
-        <Chart data={balanceData} />
-        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-          <Button onPress={() => { buy(100, currency.name) }} backgroundColor='green'>
-            Abrir Ordem de Compra
+      <Card>
+        <Text>Quantida de {currency.name}: {currency.totalBalance}</Text>
+        <Text>Valor em Ordens: {brl(orders)}</Text>
+      </Card>
+      <Chart data={balanceData} />
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+        <Button onPress={() => { buy(100, currency.name) }} backgroundColor='green'>
+          Abrir Ordem de Compra
             </Button>
-          <Button onPress={() => { sell(100, currency.name) }} backgroundColor='maroon'>
-            Fechar Ordem de Compra
+        <Button onPress={() => { sell(100, currency.name) }} backgroundColor='maroon'>
+          Fechar Ordem de Compra
             </Button>
-        </View>
-        <Chart
-          data={orderData}
-          backgroundColor={'#800000'}
-          backgroundGradientFrom={'#800000'}
-          backgroundGradientTo={'#ffa726'} />
+      </View>
+      <Chart
+        data={orderData}
+        backgroundColor={'#800000'}
+        backgroundGradientFrom={'#800000'}
+        backgroundGradientTo={'#ffa726'} />
 
-      </ScrollView>
-    </Container>
 
+    </ScrollContainer>
   )
 }
 
