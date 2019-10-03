@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import portfolioContext from '../../context/portfolioContext';
-import { Card, Button, Text, ScrollContainer } from '../../components/UI';
+import { Card, Button, Text, ScrollContainer, Input, Title } from '../../components/UI';
 import Chart from '../../components/Chart/Line';
 import { getHoursMinutesSeconds, brl, getCurrencyByName } from '../../utils/functions';
 
@@ -17,7 +17,8 @@ export default function TradingScreen({ navigation }) {
   const currency = getCurrencyByName(portfolio, paramName)
   const initialBalance = currency.totalBalance
 
-  const [balance, setBalance] = useState(initialBalance)
+  const [amount, setAmount] = useState('100')
+  // Valores do gráfico
   const [balanceHistory, setBalanceHistory] = useState([initialBalance])
   const [orders, setOrder] = useState(0)
   const [ordersHistory, setOrdersHistory] = useState([0])
@@ -27,7 +28,6 @@ export default function TradingScreen({ navigation }) {
     if (currency.totalBalance < amount) return;
     let balanceValue = currency.totalBalance - amount
     let orderValue = orders + amount
-    setBalance(balanceValue)
     setOrder(orderValue)
 
     // Valores para o gráfico
@@ -40,11 +40,9 @@ export default function TradingScreen({ navigation }) {
   }
   const sell = (amount: number, name: string) => {
     if (orders < amount) return;
-
     let orderValue = orders - amount
     let balanceValue = currency.totalBalance + amount
     setOrder(orderValue)
-    setBalance(balanceValue)
 
     // Valores para o gráfico
     limitChart(ordersHistory, timeLabels)
@@ -65,16 +63,12 @@ export default function TradingScreen({ navigation }) {
   // Valores para o Gráfico do portfólio
   const balanceData = {
     labels: timeLabels,
-    datasets: [{
-      data: balanceHistory,
-    }]
+    datasets: [{ data: balanceHistory }]
   }
   // Valores para o Gráfico do Ordens
   const orderData = {
     labels: timeLabels,
-    datasets: [{
-      data: ordersHistory
-    }]
+    datasets: [{ data: ordersHistory }]
   }
 
   return (
@@ -85,20 +79,31 @@ export default function TradingScreen({ navigation }) {
         <Text>Valor em Ordens: {brl(orders)}</Text>
       </Card>
       <Chart data={balanceData} />
+
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Button onPress={() => { buy(100, currency.name) }} backgroundColor='green'>
-          Abrir Ordem de Compra
-            </Button>
-        <Button onPress={() => { sell(100, currency.name) }} backgroundColor='maroon'>
-          Fechar Ordem de Compra
-            </Button>
+        <Button
+          onPress={() => { buy(+amount, currency.name) }}
+          backgroundColor='green'
+          title='Abrir Ordem de Compra' />
+        <Input
+          style={{ width: 100 }}
+          value={amount}
+          onChangeText={(value: string) => { setAmount(value) }}
+          onBlur={() => { }}
+          keyboardType={'decimal-pad'}
+        />
+        <Button
+          onPress={() => { sell(+amount, currency.name) }}
+          backgroundColor='maroon'
+          title='Fechar Ordem de Compra' />
+
       </View>
+
       <Chart
         data={orderData}
         backgroundColor={'#800000'}
         backgroundGradientFrom={'#800000'}
         backgroundGradientTo={'#ffa726'} />
-
 
     </ScrollContainer>
   )

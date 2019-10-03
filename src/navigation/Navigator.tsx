@@ -26,9 +26,6 @@ const MainTab = createMaterialTopTabNavigator(
       labelStyle: {
         fontSize: 12,
       },
-      tabStyle: {
-        width: 100,
-      },
       style: {
         backgroundColor: '#243',
       },

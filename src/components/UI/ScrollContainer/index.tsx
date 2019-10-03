@@ -5,7 +5,7 @@ import Container from '../Container';
 const ScrollContainer = (props: any) => (
   <Container>
     <ScrollView {...props} style={props.scrollContainer}>
-    {props.children}
+      {props.children}
     </ScrollView>
   </Container>
 );

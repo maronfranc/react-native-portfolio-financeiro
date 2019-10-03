@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import { Title, Container, ScrollContainer, Input, Text, Card, Button } from '../../components/UI';
+import { Title, ScrollContainer, Input, Text, Card } from '../../components/UI';
 import Pie from '../../components/Chart/Pie';
 import portfolioContext from '../../context/portfolioContext';
 import { capitalGainsYield } from '../../utils/formulas';
@@ -33,13 +33,13 @@ export default function ReturnsScreen() {
           <Input
             value={buyPrice}
             onChangeText={(value: string) => { setBuyPrice(value) }}
-            onBlur={() => { calculateYield(buyPrice, sellPrice)}}
+            onBlur={() => { calculateYield(buyPrice, sellPrice) }}
             keyboardType={'decimal-pad'} />
           <Text>Valor da venda: {sellPrice}</Text>
           <Input
             value={sellPrice}
             onChangeText={(value: string) => { setSellPrice(value) }}
-            onBlur={() => { calculateYield(buyPrice, sellPrice)}}
+            onBlur={() => { calculateYield(buyPrice, sellPrice) }}
             keyboardType={'decimal-pad'} />
           <Text>Resultado: {percent(capitalYield)}</Text>
         </Card>

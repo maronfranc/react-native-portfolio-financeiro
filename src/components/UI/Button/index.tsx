@@ -19,7 +19,7 @@ const Button = (props: any) => {
       ]}
     >
       <Text style={[styles.textStyles, props.disabled ? styles.disabledText : null]}>
-        {props.children}
+        {props.title}
       </Text>
     </View>
   );
