@@ -9,17 +9,12 @@ import PortfolioScreen from '../screens/Portfolio'
 import StackHeader from './StackHeader';
 
 /*
- *  AppContainer < MainStack < MainTab < Screens
- *  
- *  Rotas: {
- *    MainTab: PortfolioScreen, TradingScreen, ReturnsScreen
- *  }
+ *  AppContainer < MainStack[StackHeader] < MainTab < Screens
  */
 const MainTab = createMaterialTopTabNavigator(
-  { PortfolioScreen, ReturnsScreen, TradingScreen },
+  { PortfolioScreen, TradingScreen, ReturnsScreen },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      // https://reactnavigation.org/docs/en/tab-based-navigation.html
       swipeEnabled: true,
     }),
     tabBarOptions: {
@@ -27,7 +22,7 @@ const MainTab = createMaterialTopTabNavigator(
         fontSize: 12,
       },
       style: {
-        backgroundColor: '#243',
+        backgroundColor: '#002211',
       },
     },
   });
@@ -36,7 +31,7 @@ export const MainStack = createStackNavigator({ MainTab },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: '#243',
+        backgroundColor: '#002211',
         elevation: 0, // remove shadow on Android
         shadowOpacity: 0, // remove shadow on iOS
         borderBottomWidth: 0,

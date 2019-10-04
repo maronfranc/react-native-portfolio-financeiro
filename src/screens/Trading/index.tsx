@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 
 import portfolioContext from '../../context/portfolioContext';
-import { Card, Button, Text, ScrollContainer, Input, Title } from '../../components/UI';
+import { Card, Button, Text, Input, LinearGradient } from '../../components/UI';
 import Chart from '../../components/Chart/Line';
-import { getHoursMinutesSeconds, brl, getCurrencyByName } from '../../utils/functions';
+import { getHoursMinutesSeconds, getCurrencyByName } from '../../utils/functions';
 
 interface ChartData extends Array<number> { }
 interface ChartLabels extends Array<string> { }
@@ -72,42 +72,60 @@ export default function TradingScreen({ navigation }) {
   }
 
   return (
-    <ScrollContainer>
+    <LinearGradient>
+      <ScrollView>
 
-      <Card>
-        <Text>Quantida de {currency.name}: {currency.totalBalance}</Text>
-        <Text>Valor em Ordens: {brl(orders)}</Text>
-      </Card>
-      <Chart data={balanceData} />
+        <Text>Quantida em {currency.name}: {currency.totalBalance}</Text>
+        <Chart data={balanceData} />
 
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Button
-          onPress={() => { buy(+amount, currency.name) }}
-          backgroundColor='green'
-          title='Abrir Ordem de Compra' />
-        <Input
-          style={{ width: 100 }}
-          value={amount}
-          onChangeText={(value: string) => { setAmount(value) }}
-          onBlur={() => { }}
-          keyboardType={'decimal-pad'}
-        />
-        <Button
-          onPress={() => { sell(+amount, currency.name) }}
-          backgroundColor='maroon'
-          title='Fechar Ordem de Compra' />
+        <View style={styles.buttonsContainer}>
+          <Button
+            onPress={() => { buy(+amount, currency.name) }}
+            backgroundColor='green'
+            title='Abrir Ordem de Compra' />
+          <Input
+            style={styles.alignCenter}
+            value={amount}
+            onChangeText={(value: string) => { setAmount(value) }}
+            onFocus={() => setAmount('')}
+            keyboardType={'decimal-pad'}
+          />
+          <Button
+            onPress={() => { sell(+amount, currency.name) }}
+            backgroundColor='maroon'
+            title='Fechar Ordem de Compra' />
 
-      </View>
+        </View>
 
-      <Chart
-        data={orderData}
-        backgroundColor={'#800000'}
-        backgroundGradientFrom={'#800000'}
-        backgroundGradientTo={'#ffa726'} />
+        <Text>Quantida em ordens: {orders}</Text>
+        <Chart
+          data={orderData}
+          backgroundColor={'#800000'}
+          backgroundGradientFrom={'#800000'}
+          backgroundGradientTo={'#ffa726'} />
 
-    </ScrollContainer>
+      </ScrollView>
+    </LinearGradient>
   )
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#354',
+    marginVertical: 25
+  },
+  buttonsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 15
+  },
+  alignCenter: {
+    width: 100,
+    textAlign: 'center',
+    padding: 15
+  }
+});
 
 TradingScreen.navigationOptions = {
   title: 'Trade'

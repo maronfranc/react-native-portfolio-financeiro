@@ -5,12 +5,19 @@ import { withNavigation } from 'react-navigation';
 import { Card, Title, Button, Text } from '../UI';
 import { PortfolioCurrencyInterface } from '../../interfaces';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Pie from '../Chart/Pie';
 
 interface FlatListData {
   index: number;
   item: PortfolioCurrencyInterface;
 }
 const ListOfAssets = (props: any) => {
+  const headerComponent = () => (
+    <>
+      <Title style={{ width: '100%', marginVertical: 25 }}>Portfólio em reais</Title>
+      <Pie data={props.data} />
+    </>
+  )
   // TODO: Adicionar ícones dinamicamente
   let _renderItem = (portfolio: FlatListData) => {
     const { name, totalBalance } = portfolio.item
@@ -37,10 +44,11 @@ const ListOfAssets = (props: any) => {
 
   return (
     <FlatList
-      style={styles.flatList}
+      ListHeaderComponent={headerComponent}
       data={props.data}
       renderItem={_renderItem}
       keyExtractor={(item) => item.name}
+      style={styles.flatList}
     />
   );
 };

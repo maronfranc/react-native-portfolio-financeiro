@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { StyleSheet } from 'react-native';
 
-import { Title, ScrollContainer, Input, Text, Card } from '../../components/UI';
+import { Title, LinearGradient, Input, Text, Card } from '../../components/UI';
 import Pie from '../../components/Chart/Pie';
 import portfolioContext from '../../context/portfolioContext';
 import { capitalGainsYield } from '../../utils/formulas';
 import { percent, replaceCommaDot } from '../../utils/functions';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function ReturnsScreen() {
@@ -22,12 +24,11 @@ export default function ReturnsScreen() {
 
     setCapitalYield(stringResult)
   }
-
   return (
     <>
-      <ScrollContainer>
+      <LinearGradient>
+        <ScrollView>
 
-        <Card>
           <Title>Calculadora de Rendimento</Title>
           <Text>Valor da compra: {buyPrice}</Text>
           <Input
@@ -42,14 +43,21 @@ export default function ReturnsScreen() {
             onBlur={() => { calculateYield(buyPrice, sellPrice) }}
             keyboardType={'decimal-pad'} />
           <Text>Resultado: {percent(capitalYield)}</Text>
-        </Card>
 
-        <Title>Portfólio em reais.</Title>
-        <Pie data={portfolio} />
-      </ScrollContainer>
+
+        </ScrollView>
+      </LinearGradient>
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#354',
+    marginVertical: 25,
+    width: '99%'
+  }
+});
 
 // Configuração da tab do Navigation
 ReturnsScreen.navigationOptions = {

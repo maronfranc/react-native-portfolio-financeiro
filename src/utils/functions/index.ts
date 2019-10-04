@@ -33,8 +33,8 @@ export const replaceCommaDot = (number: string): number => {
 }
 
 // Recebe número e retorna formatado '0,000 %'
-export const percent = (n: number | string, decimals = 3): string => {
-  let percentage = (+n * 100).toFixed(decimals)
+export const percent = (n: number | string, decimals = 2): string => {
+  let percentage = (+n * 100).toFixed(decimals).replace(".", ",")
   return n ? `${percentage}%` : '';
 }
 

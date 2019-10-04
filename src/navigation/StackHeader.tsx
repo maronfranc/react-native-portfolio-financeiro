@@ -6,13 +6,13 @@ import { Text } from '../components/UI';
 import { brl } from '../utils/functions';
 import { sumPortfolio } from '../utils/formulas';
 
-const StackHeader = (props: any) => {
+const StackHeader = () => {
   const context = useContext(portfolioContext)
   const { portfolio } = context.portfolio;
   const balanceSum = sumPortfolio(portfolio)
   return (
     <View>
-      <Text>Valor Parado na Conta: {brl(balanceSum)}</Text>
+      <Text>Total: {brl(balanceSum)}</Text>
     </View>
   );
 };
