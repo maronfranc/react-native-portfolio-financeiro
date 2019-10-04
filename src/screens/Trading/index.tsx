@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 
 import portfolioContext from '../../context/portfolioContext';
 import { Card, Button, Text, Input, LinearGradient } from '../../components/UI';
 import Chart from '../../components/Chart/Line';
-import { getHoursMinutesSeconds, getCurrencyByName } from '../../utils/functions';
+import { getHoursMinutesSeconds, getCurrencyByName, replaceCommaDot } from '../../utils/functions';
 
 interface ChartData extends Array<number> { }
 interface ChartLabels extends Array<string> { }
@@ -23,6 +23,15 @@ export default function TradingScreen({ navigation }) {
   const [orders, setOrder] = useState(0)
   const [ordersHistory, setOrdersHistory] = useState([0])
   const [timeLabels, setTimelabels] = useState([getHoursMinutesSeconds()])
+
+  // Deixa a coloração do input avermelhada se for true
+  const [inputInvalid, setInputInvalid] = useState(false)
+  useEffect(() => {
+    // Verifica se o valor do input é maior do que o da conta
+    if (replaceCommaDot(amount) > currency.totalBalance)
+      return setInputInvalid(true)
+    return setInputInvalid(false)
+  }, [amount, currency.totalBalance]);
 
   const buy = (amount: number, name: string) => {
     if (currency.totalBalance < amount) return;
@@ -54,7 +63,7 @@ export default function TradingScreen({ navigation }) {
   }
 
   const limitChart = (chartData: ChartData, timeData: ChartLabels, limit = 5) => {
-    // Condicional que limita o maximo de valores no gráfico.
+    // Condicional que deleta o primeiro valor do gráfico depois de passar o limite.
     // (limit - 1) serve para deixar a variável limit mais intuitiva
     if (chartData.length > (limit - 1)) chartData.shift()
     if (timeData.length > (limit - 1)) timeLabels.shift()
@@ -70,7 +79,6 @@ export default function TradingScreen({ navigation }) {
     labels: timeLabels,
     datasets: [{ data: ordersHistory }]
   }
-
   return (
     <LinearGradient>
       <ScrollView>
@@ -89,12 +97,12 @@ export default function TradingScreen({ navigation }) {
             onChangeText={(value: string) => { setAmount(value) }}
             onFocus={() => setAmount('')}
             keyboardType={'decimal-pad'}
+            invalid={inputInvalid}
           />
           <Button
             onPress={() => { sell(+amount, currency.name) }}
             backgroundColor='maroon'
             title='Fechar Ordem de Compra' />
-
         </View>
 
         <Text>Quantida em ordens: {orders}</Text>

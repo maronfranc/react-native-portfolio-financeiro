@@ -4,14 +4,17 @@ import { TextInput, StyleSheet } from "react-native";
 const Input = (props: any) => (
   <TextInput
     {...props}
-    style={[styles.input, props.style]}
+    style={[
+      styles.input, 
+      props.style,
+      props.invalid ? styles.invalid : null,
+    ]}
     autoCapitalize="sentences"
     underlineColorAndroid="rgba(0,0,0,0)" />
 );
 
 const styles = StyleSheet.create({
   input: {
-    // width: "100%",
     borderWidth: 1,
     borderRadius: 5,
     borderColor: 'gold',
@@ -29,6 +32,10 @@ const styles = StyleSheet.create({
     color: '#FFF',
     backgroundColor: 'rgba(255,255,255,0.25)',
   },
+  invalid: {
+    borderColor: 'maroon',
+    backgroundColor: 'rgba(128, 0, 0, 0.25)'
+  }
 });
 
 export default Input;
