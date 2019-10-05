@@ -5,7 +5,7 @@ const Input = (props: any) => (
   <TextInput
     {...props}
     style={[
-      styles.input, 
+      styles.input,
       props.style,
       props.invalid ? styles.invalid : null,
     ]}

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 
 import portfolioContext from '../../context/portfolioContext';
-import { Card, Button, Text, Input, LinearGradient } from '../../components/UI';
+import { Button, Text, Input, LinearGradient } from '../../components/UI';
 import Chart from '../../components/Chart/Line';
 import { getHoursMinutesSeconds, getCurrencyByName, replaceCommaDot } from '../../utils/functions';
 
